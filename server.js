@@ -114,7 +114,7 @@ slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
 })
 
 
-slapp.message('yesno', (msg) => {
+slapp.message('yesno', ['mention', 'direct_message'], (msg) => {
   msg.say({
       text: '',
       attachments: [
