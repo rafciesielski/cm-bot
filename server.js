@@ -87,6 +87,8 @@ var country_options = {
         }]
 }
 
+var cmservice = require('./cmservice.js')
+
 slapp.action('country_callback', 'answer', (msg, value) => {
     ticket.country = value
     msg.respond(msg.body.response_url, `Country: ${value}`)
@@ -97,9 +99,12 @@ slapp.action('country_callback', 'answer', (msg, value) => {
         var text = (msg.body.event && msg.body.event.text) || ''
         ticket.comment = text
         console.log(`New ticket: ${JSON.stringify(ticket)}`)
-        msg.say(`Description: ${text}`)
-            .say('The problem was reported: https://cerimnoplt.localtunnel.me/cm-client/ticket/ticket_name/100806')
-            .say('Thank you! Bye!')
+        cmservice.createTicket(function (uri) {
+            console.log(uri);
+            msg.say(`Description: ${text}`)
+                .say(`The problem was reported: ${uri}`)
+                .say('Thank you! Bye!')
+        });
     })
 
 var server = slapp.attachToExpress(express())

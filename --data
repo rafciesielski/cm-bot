@@ -1,0 +1,58 @@
+* Hostname was NOT found in DNS cache
+*   Trying 138.197.63.247...
+* Connected to sgjplpmart.localtunnel.me (138.197.63.247) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server key exchange (12):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using ECDHE-RSA-AES128-GCM-SHA256
+* Server certificate:
+* 	 subject: OU=Domain Control Validated; OU=EssentialSSL Wildcard; CN=*.localtunnel.me
+* 	 start date: 2016-11-13 00:00:00 GMT
+* 	 expire date: 2017-12-09 23:59:59 GMT
+* 	 subjectAltName: sgjplpmart.localtunnel.me matched
+* 	 issuer: C=GB; ST=Greater Manchester; L=Salford; O=COMODO CA Limited; CN=COMODO RSA Domain Validation Secure Server CA
+* 	 SSL certificate verify ok.
+> GET /restapi/tickets HTTP/1.1
+> User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)
+> Host: sgjplpmart.localtunnel.me
+> Accept: */*
+> Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+> Accept-Language: en-US,en;q=0.8
+> Authorization: Basic SHViZXI6Y29uc29s
+> 
+< HTTP/1.1 200 OK
+* Server nginx/1.10.1 is not blacklisted
+< Server: nginx/1.10.1
+< Date: Fri, 13 Oct 2017 10:26:11 GMT
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< cache-control: no-cache, no-store, no-transform, must-revalidate
+< 
+{ [data not shown]
+* Connection #0 to host sgjplpmart.localtunnel.me left intact
+* Rebuilt URL to: subject=test1&queue=HelpDesk_1st_Level&helpdesk_standard.priority=low&comment=bla%20bla%20bla&country=germany&customer=497/
+* Hostname was NOT found in DNS cache
+* Could not resolve host: subject=test1&queue=HelpDesk_1st_Level&helpdesk_standard.priority=low&comment=bla%20bla%20bla&country=germany&customer=497
+* Closing connection 1
+curl: (6) Could not resolve host: subject=test1&queue=HelpDesk_1st_Level&helpdesk_standard.priority=low&comment=bla%20bla%20bla&country=germany&customer=497
