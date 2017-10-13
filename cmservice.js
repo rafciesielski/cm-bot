@@ -7,18 +7,19 @@ var authorizationHeader = 'Authorization: ' + auth
 
 var Curl = require('node-libcurl').Curl,
     querystring = require('querystring');
+    cmUriBase = 'https://okkbwujodm.localtunnel.me';
 
 module.exports = {
-    createTicket: function (callback) {
+    createTicket: function (ticket, callback) {
 
         var curl = new Curl(),
-            url = 'https://jsuzubvilz.localtunnel.me/restapi/tickets',
+            url = `${cmUriBase}/restapi/tickets`,
             data = {
-                'subject': 'test1',
-                'queue': 'HelpDesk_1st_Level',
-                'helpdesk_standard.priority': 'low',
-                'comment': 'bla bla bla',
-                'country': 'germany',
+                'subject': ticket.subject,
+                'queue': ticket.queue,
+                'helpdesk_standard.priority': ticket.priority,                
+                'country': ticket.country,
+                'comment': ticket.comment,
                 'customer': '497'
             };
 
@@ -29,16 +30,14 @@ module.exports = {
         curl.setOpt(Curl.option.HTTPHEADER, [authorizationHeader, 'Accept: application/json']);
         curl.setOpt(Curl.option.VERBOSE, false);
 
-        console.log(querystring.stringify(data));
-
         curl.perform();
 
         curl.on('end', function (statusCode, body, headers) {
-
-            var uri = JSON.parse(body).uri
-
-            callback(uri);
-
+            var restUri = JSON.parse(body).uri    
+            console.log(`restUri: ${restUri}`)    
+            var idx = restUri.lastIndexOf('/');
+            var id = restUri.substring(idx + 1);
+            callback(`${cmUriBase}/cm-client/ticket/ticket_name/${id}`);
             this.close();
         });
 
