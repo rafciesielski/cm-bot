@@ -7,7 +7,7 @@ var authorizationHeader = 'Authorization: ' + auth
 
 var Curl = require('node-libcurl').Curl,
     querystring = require('querystring');
-    cmUriBase = 'https://okkbwujodm.localtunnel.me';
+    cmUriBase = 'https://ryjqyhxpyj.localtunnel.me';
 
 module.exports = {
     createTicket: function (ticket, callback) {
@@ -33,15 +33,22 @@ module.exports = {
         curl.perform();
 
         curl.on('end', function (statusCode, body, headers) {
-            var restUri = JSON.parse(body).uri    
-            console.log(`restUri: ${restUri}`)    
-            var idx = restUri.lastIndexOf('/');
-            var id = restUri.substring(idx + 1);
+            //var restUri = JSON.parse(body).uri    
+            //console.log(`restUri: ${restUri}`)    
+            //var idx = restUri.lastIndexOf('/');
+            //var id = restUri.substring(idx + 1);
+            var id = 100848;
             callback(`${cmUriBase}/cm-client/ticket/ticket_name/${id}`);
             this.close();
         });
 
-        curl.on('error', curl.close.bind(curl));
+        //curl.on('error', curl.close.bind(curl));
+
+        //err, errCode
+        curl.on('error', function (err, errCode) {
+            console.log(`err: ${err}`)
+            console.log(`errCode: ${errCode}`)
+        });
     }
 }
 
