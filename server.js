@@ -83,10 +83,13 @@ var country_options = {
 
 slapp.action('country_callback', 'answer', (msg, value) => {
     msg.respond(msg.body.response_url, `Country: ${value}`)
+        .say('Describe problem in few words:')
         .route('comment-route', {})
 })
     .route('comment-route', (msg, state) => {
-        msg.say('Describe problem')
+        var text = (msg.body.event && msg.body.event.text) || ''
+        msg.say(`Description: ${text}`)
+            .say('Thank you! Bye!')
     })
 
 // Catch-all for any other responses not handled above
