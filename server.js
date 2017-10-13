@@ -45,9 +45,9 @@ var queue_options = {
         }]
 }
 
-slapp.command('newticket', (msg) => {
+slapp.command('/newticket', (msg) => {
     var subject = (msg.body.event && msg.body.event.text)
-    //console.log('New ticket: ' + msg.body.event.text);
+    console.log('New ticket: ' + msg.body.event.text);
     msg.say('qqqqqqqqqq')
 })
 
