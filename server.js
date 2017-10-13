@@ -21,7 +21,11 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
     msg.say(HELP_TEXT)
 })
 
+
+var ticket = {}
+
 slapp.command('/newticket', (msg, subject) => {
+    ticket.subject = subject
     msg.say(`Subject: ${subject}`)
         .say(queue_options)
 })
@@ -42,6 +46,7 @@ var queue_options = {
 }
 
 slapp.action('queue_callback', 'answer', (msg, value) => {
+    ticket.queue = value
     msg.respond(msg.body.response_url, `Queue: ${value}`)
         .say(priority_options)
 })
@@ -62,6 +67,7 @@ var priority_options = {
 }
 
 slapp.action('priority_callback', 'answer', (msg, value) => {
+    ticket.priority = value
     msg.respond(msg.body.response_url, `Priority: ${value}`)
         .say(country_options)
 })
@@ -82,29 +88,22 @@ var country_options = {
 }
 
 slapp.action('country_callback', 'answer', (msg, value) => {
+    ticket.country = value
     msg.respond(msg.body.response_url, `Country: ${value}`)
         .say('Describe problem in few words:')
         .route('comment-route', {})
 })
     .route('comment-route', (msg, state) => {
         var text = (msg.body.event && msg.body.event.text) || ''
+        ticket.comment = text
+        console.log(`New ticket: ${JSON.stringify(ticket)}`)
         msg.say(`Description: ${text}`)
             .say('The problem was reported: https://cerimnoplt.localtunnel.me/cm-client/ticket/ticket_name/100806')
             .say('Thank you! Bye!')
     })
 
-// Catch-all for any other responses not handled above
-slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
-    // respond only 40% of the time
-    if (Math.random() < 0.4) {
-        msg.say([':wave:', ':pray:', ':raised_hands:'])
-    }
-})
-
-// attach Slapp to express server
 var server = slapp.attachToExpress(express())
 
-// start http server
 server.listen(port, (err) => {
     if (err) {
         return console.error(err)
