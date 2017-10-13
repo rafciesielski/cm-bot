@@ -35,7 +35,7 @@ var queue_options = {
     attachments: [
         {
             text: '',
-            fallback: 'Wybierz kolejkę?',
+            fallback: 'Select queue:',
             callback_id: 'queue_callback',
             actions: [
                 { name: 'answer', text: 'HelpDesk 1st Level', type: 'button', value: 'HelpDesk_1st_Level' },
@@ -46,11 +46,13 @@ var queue_options = {
 }
 
 slapp.command('/newticket', (msg, subject) => {
-    //var subject = (msg.body.event && msg.body.event.text)
     console.log('New ticket: ' + subject);
-    msg.say('qqqqqqqqqq')
+    msg.say(queue_options)
 })
 
+slapp.action('queue_callback', 'answer', (msg, value) => {
+    msg.respond(msg.body.response_url, `${value} is a good choice!`)
+})
 
 // Catch-all for any other responses not handled above
 slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
