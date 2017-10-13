@@ -7,6 +7,6 @@ ticket.priority = 'low'
 ticket.country = 'germany'
 ticket.comment = 'tra la la ...'
 
-cmservice.createTicketMock(ticket, function(uri) {
+cmservice.createTicket(ticket, function(uri) {
     console.log(uri);
 });
