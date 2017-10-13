@@ -34,7 +34,7 @@ var queue_options = {
     text: '',
     attachments: [
         {
-            text: '',
+            text: 'Select queue:',
             fallback: 'Select queue:',
             callback_id: 'queue_callback',
             actions: [
@@ -45,14 +45,34 @@ var queue_options = {
         }]
 }
 
+slapp.action('queue_callback', 'answer', (msg, value) => {
+    msg.respond(msg.body.response_url, `Queue: ${value}`)
+})
+
+var priority_options = {
+    text: '',
+    attachments: [
+        {
+            text: 'Select priority:',
+            fallback: 'Select priority:',
+            callback_id: 'priority_callback',
+            actions: [
+                { name: 'answer', text: 'Low', type: 'button', value: 'low' },
+                { name: 'answer', text: 'Normal', type: 'button', value: 'normal' },
+                { name: 'answer', text: 'High', type: 'button', value: 'high' }
+            ]
+        }]
+}
+
+slapp.action('priority_callback', 'answer', (msg, value) => {
+    msg.respond(msg.body.response_url, `Priority: ${value}`)
+})
+
 slapp.command('/newticket', (msg, subject) => {
     console.log('New ticket: ' + subject);
     msg.say(`Subject: ${subject}`)
         .say(queue_options)
-})
-
-slapp.action('queue_callback', 'answer', (msg, value) => {
-    msg.respond(msg.body.response_url, `Queue: ${value}`)
+        .say(priority_options)
 })
 
 // Catch-all for any other responses not handled above
