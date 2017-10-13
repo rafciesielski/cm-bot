@@ -47,11 +47,12 @@ var queue_options = {
 
 slapp.command('/newticket', (msg, subject) => {
     console.log('New ticket: ' + subject);
-    msg.say(queue_options)
+    msg.say(`Subject: ${subject}`)
+        .say(queue_options)
 })
 
 slapp.action('queue_callback', 'answer', (msg, value) => {
-    msg.respond(msg.body.response_url, `${value} is a good choice!`)
+    msg.respond(msg.body.response_url, `Queue: ${value}`)
 })
 
 // Catch-all for any other responses not handled above
