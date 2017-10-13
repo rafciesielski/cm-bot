@@ -89,13 +89,13 @@ slapp.action('country_callback', 'answer', (msg, value) => {
 
 slapp.command('/newticket', (msg, subject) => {    
     msg.say(`Subject: ${subject}`)
-        .say(queue_options)
-        .route('priority-route', {subject: subject})
-        //.say(priority_options)
-        //.say(country_options)
+        .say(queue_options)        
+        .say(priority_options)
+        .say(country_options)
+        .route('comment-route', {subject: subject})
 })
-.route('priority-route', (msg, state) => {
-    msg.say(priority_options)
+.route('comment-route', (msg, state) => {
+    msg.say('Describe problem')
 })
 
 // Catch-all for any other responses not handled above
