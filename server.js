@@ -89,6 +89,7 @@ slapp.action('country_callback', 'answer', (msg, value) => {
     .route('comment-route', (msg, state) => {
         var text = (msg.body.event && msg.body.event.text) || ''
         msg.say(`Description: ${text}`)
+            .say('The problem was reported: https://cerimnoplt.localtunnel.me/cm-client/ticket/ticket_name/100806')
             .say('Thank you! Bye!')
     })
 
