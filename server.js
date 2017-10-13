@@ -30,6 +30,17 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
     msg.say(HELP_TEXT)
 })
 
+slapp.command('/newticket', (msg, subject) => {
+    msg.say(`Subject: ${subject}`)
+        .say(queue_options)
+    //.say(priority_options)
+    //.say(country_options)
+    //.route('comment-route', {subject: subject})
+})
+    .route('comment-route', (msg, state) => {
+        msg.say('Describe problem')
+    })
+
 var queue_options = {
     text: '',
     attachments: [
@@ -47,6 +58,7 @@ var queue_options = {
 
 slapp.action('queue_callback', 'answer', (msg, value) => {
     msg.respond(msg.body.response_url, `Queue: ${value}`)
+        .say(priority_options)
 })
 
 var priority_options = {
@@ -85,17 +97,6 @@ var country_options = {
 
 slapp.action('country_callback', 'answer', (msg, value) => {
     msg.respond(msg.body.response_url, `Country: ${value}`)
-})
-
-slapp.command('/newticket', (msg, subject) => {    
-    msg.say(`Subject: ${subject}`)
-        .say(queue_options)        
-        .say(priority_options)
-        .say(country_options)
-        .route('comment-route', {subject: subject})
-})
-.route('comment-route', (msg, state) => {
-    msg.say('Describe problem')
 })
 
 // Catch-all for any other responses not handled above
