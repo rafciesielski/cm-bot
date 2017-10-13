@@ -18,7 +18,7 @@ var slapp = Slapp({
 
 var HELP_TEXT = `
 Available commands:
-\`newticket\` - to create new ticket. Use: /newticket {subject}.
+\`newticket\` - creates new ticket. Use: /newticket {subject}.
 `
 
 //*********************************************
@@ -47,6 +47,7 @@ var queue_options = {
 
 slapp.command('newticket', (msg) => {
     var subject = (msg.body.event && msg.body.event.text)
+    console.log('New ticket: ' + msg.body.event.text);
 })
 
 
