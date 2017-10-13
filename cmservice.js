@@ -10,6 +10,12 @@ var Curl = require('node-libcurl').Curl,
     cmUriBase = 'https://ryjqyhxpyj.localtunnel.me';
 
 module.exports = {
+
+    createTicketMock: function (ticket, callback) {
+        var id = 100848;
+        callback(`${cmUriBase}/cm-client/ticket/ticket_name/${id}`);
+    }
+
     createTicket: function (ticket, callback) {
 
         var curl = new Curl(),

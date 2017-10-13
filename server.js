@@ -99,7 +99,7 @@ slapp.action('country_callback', 'answer', (msg, value) => {
         var text = (msg.body.event && msg.body.event.text) || ''
         ticket.comment = text
         console.log(`New ticket: ${JSON.stringify(ticket)}`)
-        cmservice.createTicket(function (uri) {
+        cmservice.createTicketMock(function (uri) {
             console.log(uri);
             msg.say(`Description: ${text}`)
                 .say(`The problem was reported: ${uri}`)
