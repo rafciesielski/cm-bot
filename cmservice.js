@@ -11,11 +11,6 @@ var Curl = require('node-libcurl').Curl,
 
 module.exports = {
 
-    // createTicketMock: function (ticket, callback) {
-    //     var id = 100848;
-    //     callback(`${cmUriBase}/cm-client/ticket/ticket_name/${id}`);
-    // }
-
     createTicket: function (ticket, callback) {
 
         var curl = new Curl(),
@@ -39,18 +34,13 @@ module.exports = {
         curl.perform();
 
         curl.on('end', function (statusCode, body, headers) {
-            var restUri = JSON.parse(body).uri    
-            console.log(`restUri: ${restUri}`)    
+            var restUri = JSON.parse(body).uri        
             var idx = restUri.lastIndexOf('/');
             var id = restUri.substring(idx + 1);
-            //var id = 100848;
             callback(`${cmUriBase}/cm-client/ticket/ticket_name/${id}`);
             this.close();
         });
 
-        //curl.on('error', curl.close.bind(curl));
-
-        //err, errCode
         curl.on('error', function (err, errCode) {
             console.log(`err: ${err}`)
             console.log(`errCode: ${errCode}`)
