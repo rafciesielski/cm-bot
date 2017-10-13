@@ -48,6 +48,7 @@ module.exports = {
         curl.on('error', function (err, errCode) {
             console.log(`err: ${err}`)
             console.log(`errCode: ${errCode}`)
+            curl.close.bind(curl)
         });
     }
 }
