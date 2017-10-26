@@ -7,7 +7,7 @@ var authorizationHeader = 'Authorization: ' + auth
 
 var Curl = require('node-libcurl').Curl,
     querystring = require('querystring');
-    cmUriBase = 'https://pjxdlaghym.localtunnel.me';
+    cmUriBase = 'https://htffwzebgh.localtunnel.me';
 
 module.exports = {
 
