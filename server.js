@@ -87,7 +87,8 @@ var country_options = {
         }]
 }
 
-var cmservice = require('./cmservice.js')
+//var cmservice = require('./cm-rest-service.js')
+var cmservice = require('./cm-webhook-service.js')
 
 slapp.action('country_callback', 'answer', (msg, value) => {
     ticket.country = value

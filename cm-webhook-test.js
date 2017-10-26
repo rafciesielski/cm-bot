@@ -1,4 +1,4 @@
-var cmservice = require('./cmservice.js')
+var cmservice = require('./cm-webhook-service.js')
 
 var ticket = {}
 ticket.subject = 'test123'
