@@ -2,9 +2,9 @@ var request = require("request")
 
 //var cmUriBase = 'http://localhost:8888'
 var cmUriBase = 'http://9e187f49.ngrok.io'
-var app = 'slack'
+var app = 'demo'
 var webhookHeaders = {  
-    "SECRET_TOKEN": "12345678",
+    "SECRET_TOKEN": "123123123",
 }
 
 module.exports = {
