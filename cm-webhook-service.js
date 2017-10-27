@@ -18,7 +18,7 @@ module.exports = {
         request(options, function reqCallback(error, response, body) {
             if (!error && response.statusCode == 200) {  
                 console.log(body);              
-                callback(`${cmUriBase}/cm-client/ticket/ticket_name/${body.ticketId}`);
+                callback(`${cmUriBase}/cm-client/ticket/ticket_id/${body.ticketId}`);
             } else {
                 console.log(error);
             }
