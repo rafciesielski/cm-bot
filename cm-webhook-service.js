@@ -1,9 +1,9 @@
 var request = require("request")
 
 //var cmUriBase = 'http://localhost:8888'
-var cmUriBase = 'http://d19906be.ngrok.io'
+var cmUriBase = 'http://9e187f49.ngrok.io'
 var app = 'slack'
-var custHeaders = {  
+var webhookHeaders = {  
     "SECRET_TOKEN": "12345678",
 }
 
@@ -12,7 +12,7 @@ module.exports = {
         var options = {
             uri: `${cmUriBase}/intg/${app}/service`,
             method: 'POST',
-            headers: custHeaders,
+            headers: webhookHeaders,
             json: JSON.stringify(ticket)
           }
         request(options, function reqCallback(error, response, body) {
